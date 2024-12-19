@@ -15,7 +15,7 @@ def emot_detector():
     response = emotion_detector(text_to_analyze)
     # Extract the label and score from the response
     customer_response = response["emotionPredictions"][0]["emotion"]
-    # Return a formatted string with the sentiment label and score
+    # Return a formatted string with the emotion label and score
     return ("For the given statement, the system response is {}.".format(customer_response)
             .replace('{','').replace('}',''))
 
