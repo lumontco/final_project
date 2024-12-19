@@ -14,10 +14,13 @@ def emot_detector():
     # Pass the text to the sentiment_analyzer function and store the response
     response = emotion_detector(text_to_analyze)
     # Extract the label and score from the response
-    customer_response = response["emotionPredictions"][0]["emotion"]
+    customer_response = response
     # Return a formatted string with the emotion label and score
-    return ("For the given statement, the system response is {}.".format(customer_response)
-            .replace('{','').replace('}',''))
+    if customer_response["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
+    else:
+        return ("For the given statement, the system response is {}.".format(customer_response)
+                .replace('{','').replace('}',''))
 
 @app.route("/")
 def render_index_page():
