@@ -16,6 +16,10 @@ def emotion_detector(text_to_analyse):
 
     # Parse the response from the API
     formatted_response = json.loads(response.text)
+    formatted_response["emotionPredictions"][0]["emotion"]["dominant_emotion"] = max(
+        formatted_response["emotionPredictions"][0]["emotion"],
+        key = formatted_response["emotionPredictions"][0]["emotion"].get
+        )
 
     # Return the label and score in a dictionary
     return formatted_response
