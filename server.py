@@ -1,3 +1,5 @@
+''' Docstring required to improve pylint evaluation
+'''
 # Import Flask, render_template, request from the flask pramework package
 from flask import Flask, render_template, request
 # Import the emotion_detector function from the package created
@@ -9,6 +11,8 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def emot_detector():
+    ''' This module is required server-side to run the app.
+    '''
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
     # Pass the text to the sentiment_analyzer function and store the response
@@ -18,9 +22,9 @@ def emot_detector():
     # Return a formatted string with the emotion label and score
     if customer_response["dominant_emotion"] is None:
         return "Invalid text! Please try again!"
-    else:
-        return ("For the given statement, the system response is {}.".format(customer_response)
-                .replace('{','').replace('}',''))
+
+    return (f"For the given statement, the system response is {customer_response}."
+            .replace('{','').replace('}',''))
 
 @app.route("/")
 def render_index_page():
